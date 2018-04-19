@@ -97,11 +97,14 @@ public class LogstashUtilFormatter extends Formatter {
         builder.add("timestamp", record.getMillis());
         builder.add("level", record.getLevel().toString());
         builder.add("line_number", getLineNumber(record));
+        builder.add("thread", Thread.currentThread()
+                .getName());
         addSourceClassName(record, builder);
         addSourceMethodName(record, builder);
         addThrowableInfo(record, builder);
         return builder;
     }
+
 
     /**
      * Format the stackstrace.
